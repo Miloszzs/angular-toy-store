@@ -1,24 +1,18 @@
-<!--<ul>
+@if(toys().length > 0) {
+<ul>
     @for(t of toys(); track $index) {
         <li>
-            <h5>{{t.toyId}}</h5>
+            <h5>ID igracke {{t.toyId}}</h5>
             <ul>
                 <li>Naziv igracke: {{t.name}}</li>
-                <li>Nesto: {{t.description}}</li>
-                <li>Nesto 2: {{t.price}}</li>
-                <li>Nesto 3: {{t.type}}</li>
+                <li>Opis: {{t.description}}</li>
+                <li>Cena: {{t.price}}</li>
+                <li><a [routerLink]="`/details/${t.toyId}`">Detalji</a></li>
             </ul>
         </li>
     }
-</ul>>
--->
-@for (toy of toys(); track toy.toyId) {
-  <h2>{{ toy.name }}</h2>
-
-  <p>{{ toy.description }}</p>
-
-  <p>Tip: {{ toy.type!.name }}</p>
-
-  <p>Uzrast: {{ toy.ageGroup!.name }}</p>
-
-  <p>Cena: {{ toy.price }} RSD</p>}
+</ul>>}
+@else{
+        <h3>Podaci se ucitavaju</h3>
+        <p>Molimo sacekajte...</p>
+    }
