@@ -1,2 +1,37 @@
-<p>details works!</p>
-<p>ovo je {{id()}}</p>
+@if(toys()) {
+    <div class="details-wrapper">
+        <mat-card class="details-card">
+        <mat-card-content>
+            <img [src]="utils.getImageUrl(toys()!)" class="details-image">
+        </mat-card-content>
+        </mat-card>
+        <mat-card class="details-card">
+            <mat-card-content>
+                <h1 class="det-header">{{toys()?.name}}</h1>
+                <mat-list>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Naziv proizvoda: {{toys()?.name}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Opis: <br>{{toys()?.description}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Tip: {{toys()?.type?.name}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Uzrast: {{toys()?.ageGroup?.name}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Ciljna grupa: {{toys()?.targetGroup}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Datum proizvodnje: {{toys()?.productionDate}}</div>
+                    </mat-list-item>
+                    <mat-list-item class="ml-item">
+                    <div matListItemTitle>Cena: {{toys()?.price}}rsd</div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+}

@@ -1,18 +1,27 @@
 @if(toys().length > 0) {
-<ul>
+
+<div class="card-wrapper">
     @for(t of toys(); track $index) {
-        <li>
-            <h5>ID igracke {{t.toyId}}</h5>
-            <ul>
-                <li>Naziv igracke: {{t.name}}</li>
-                <li>Opis: {{t.description}}</li>
-                <li>Cena: {{t.price}}</li>
-                <li><a [routerLink]="`/details/${t.toyId}`">Detalji</a></li>
-            </ul>
-        </li>
+        <mat-card class="toy-card" appearance="outlined"> 
+            <img mat-card-image [src]="utils.getImageUrl(t)" 
+            [alt]="t.name">
+                <mat-card-content class="card-content">
+                    <mat-card-title><strong>{{t.name}}</strong></mat-card-title>
+                    <mat-card-subtitle class="subt">Cena: {{t.price}}rsd</mat-card-subtitle>
+                </mat-card-content>
+            <mat-card-actions>
+                <a [routerLink]="`/details/${t.toyId}`" matButton>
+                <mat-icon fontIcon="description"/> Detalji</a>
+            </mat-card-actions>
+        </mat-card>
     }
-</ul>>}
+</div>}
 @else{
-        <h3>Podaci se ucitavaju</h3>
-        <p>Molimo sacekajte...</p>
+        <mat-card class="loading-card">
+    <img src="/loading.gif" class="loading-image">
+        <mat-card-content>
+            <h3>Podaci se ucitavaju</h3>
+            <p>Molimo sacekajte...</p>
+        </mat-card-content>
+    </mat-card>
     }

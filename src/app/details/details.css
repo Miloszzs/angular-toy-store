@@ -1,0 +1,23 @@
+.details-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.details-card {
+    width: 500px;
+}
+
+.details-image {
+    max-width: 100%;
+}
+
+.ml-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.det-header {
+    text-align: center;
+}
