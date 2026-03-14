@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
-import { RouterOutlet, RouterLinkWithHref } from "@angular/router";
+import { RouterOutlet, RouterLinkWithHref, Router } from "@angular/router";
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 })
 
 export class App {
+  public authService = AuthService
+  constructor (private router: Router) {}
   
+  doLogout() {
+    AuthService.logout()
+    this.router.navigate(['/login'])
+  }
 }

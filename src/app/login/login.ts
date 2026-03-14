@@ -6,6 +6,7 @@ import { MatIcon } from "@angular/material/icon";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Alerts } from '../alerts';
 @Component({
   selector: 'app-login',
   imports: [MatCardModule, MatInputModule, MatAnchor, MatButtonModule, MatIcon, FormsModule],
@@ -28,6 +29,6 @@ export class Login {
       this.router.navigate(['/'])
       return
     }
-    alert('Invalid email or password!')
+    Alerts.error('Greska u kredencijalima')
   }
 }

@@ -1,0 +1,12 @@
+.loading-card {
+    max-width: 420px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-image {
+    max-width: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
