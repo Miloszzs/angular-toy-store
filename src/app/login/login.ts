@@ -5,11 +5,11 @@ import { MatAnchor, MatButtonModule } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Alerts } from '../alerts';
 @Component({
   selector: 'app-login',
-  imports: [MatCardModule, MatInputModule, MatAnchor, MatButtonModule, MatIcon, FormsModule],
+  imports: [MatCardModule, MatInputModule, MatAnchor, MatButtonModule, MatIcon, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
