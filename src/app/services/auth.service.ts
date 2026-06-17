@@ -1,4 +1,5 @@
 import { OrderModel } from "../../models/order.model"
+import { Toy } from "../../models/toy.model"
 import { UserModel } from "../../models/user.model"
 const ACTIVE = 'active'
 const USERS = 'users'
@@ -67,8 +68,12 @@ export class AuthService {
         localStorage.removeItem(ACTIVE)
     }
 
-    static createOrder(order: Partial<OrderModel>, toyId: number) {
-        order.toyId = toyId
+    static createOrder(order: Partial<OrderModel>, toy: Toy) {
+        order.toyId = toy.toyId
+        order.name = toy.name
+        order.type = toy.type
+        order.ageGroup = toy.ageGroup
+        order.price = toy.price
         order.createdAt = new Date().toISOString()
         order.state = 'rezervisano'
         const users = this.getUsers()
@@ -78,5 +83,41 @@ export class AuthService {
             }
         }
         localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
+    static cancelOrder(createdAt: string) {
+        const users = this.getUsers()
+        for (let u of users) {
+            if (u.email === localStorage.getItem(ACTIVE)) {
+                for (let o of u.orders) {
+                    if (o.state == 'rezervisano' && o.createdAt == createdAt) {
+                        o.state = 'otkazano'
+                    }
+                }
+            }
+        }localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
+    static payOrder() {
+        const users = this.getUsers()
+        for (let u of users) {
+            if (u.email === localStorage.getItem(ACTIVE)) {
+                for (let o of u.orders) {
+                    if (o.state == 'rezervisano') {
+                        o.state = 'pristiglo'
+                    }
+                }
+            }
+        }localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
+    static getOrdersByState(state: 'rezervisano' | 'pristiglo' | 'otkazano') {
+        const users = this.getUsers()
+        for (let u of users) {
+            if (u.email === localStorage.getItem(ACTIVE)) {
+                return u.orders.filter((o) => o.state === state) 
+            }
+        }
+        return []
     }
 }

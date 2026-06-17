@@ -23,4 +23,11 @@ export class ToyService {
         return await client.get<string[]>('/type')
     }
     
+    static async getToysByIds(ids: number[]) {
+        return await client.request({
+            url: '/toy/list',
+            method: 'post',
+            data: ids
+        })
+    }
 }

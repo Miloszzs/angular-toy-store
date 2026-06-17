@@ -1,1 +1,131 @@
-<p>cart works!</p>
+@if(getOrdersSec().length > 0) {
+<mat-card class="mc">
+    <mat-card-header>
+        <h2>Rezervisane igracke</h2>
+    </mat-card-header>
+<mat-card-content>
+<table mat-table [dataSource]="getOrdersSec()" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Naziv</th>
+    <td mat-cell *matCellDef="let order"> {{order.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Tip</th>
+    <td mat-cell *matCellDef="let order"> {{order.type.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ageGroup">
+    <th mat-header-cell *matHeaderCellDef>Uzrast</th>
+    <td mat-cell *matCellDef="let order"> {{order.ageGroup.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Kolicina</th>
+    <td mat-cell *matCellDef="let order"> {{order.count}} </td>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef>Kreirano</th>
+    <td mat-cell *matCellDef="let order"> {{utils.formatDate(order.createdAt)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef>Opcije</th>
+  <td mat-cell *matCellDef="let order">
+    <a [routerLink]="`/details/${order.toyId}`" matButton>
+    <mat-icon fontIcon="description"/> Detalji</a> 
+    <button type="button" matButton (click)="removeOrder(order)">
+        <mat-icon fontIcon="cancel"/> Ukloni
+    </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<h3>Ukupno: {{calculator()}} rsd</h3>
+</mat-card-content>
+<mat-card-actions>
+    <button type="button" matButton (click)="payAll()">
+        <mat-icon fontIcon="payments"/> Plati
+    </button>
+</mat-card-actions>
+</mat-card>
+}
+
+@if(getCanceledOrders().length > 0) {
+<mat-card class="mc">
+    <mat-card-header>
+        <h2>Otkazane porudzbine</h2>
+    </mat-card-header>
+
+<mat-card-content>
+<table mat-table [dataSource]="getCanceledOrders()" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Naziv</th>
+    <td mat-cell *matCellDef="let order"> {{order.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Tip</th>
+    <td mat-cell *matCellDef="let order"> {{order.type.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ageGroup">
+    <th mat-header-cell *matHeaderCellDef>Uzrast</th>
+    <td mat-cell *matCellDef="let order"> {{order.ageGroup.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Kolicina</th>
+    <td mat-cell *matCellDef="let order"> {{order.count}} </td>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef>Kreirano</th>
+    <td mat-cell *matCellDef="let order"> {{utils.formatDate(order.createdAt)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef>Opcije</th>
+  <td mat-cell *matCellDef="let order">
+    <a [routerLink]="`/details/${order.toyId}`" matButton>
+    <mat-icon fontIcon="description"/> Detalji</a> 
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card-content>
+</mat-card> }
+
+@if(getDoneOrders().length > 0) {
+<mat-card class="mc">
+    <mat-card-header>
+        <h2>Pristigle porudzbine</h2>
+    </mat-card-header>
+
+<mat-card-content>
+<table mat-table [dataSource]="getDoneOrders()" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Naziv</th>
+    <td mat-cell *matCellDef="let order"> {{order.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Tip</th>
+    <td mat-cell *matCellDef="let order"> {{order.type.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ageGroup">
+    <th mat-header-cell *matHeaderCellDef>Uzrast</th>
+    <td mat-cell *matCellDef="let order"> {{order.ageGroup.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Kolicina</th>
+    <td mat-cell *matCellDef="let order"> {{order.count}} </td>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef>Kreirano</th>
+    <td mat-cell *matCellDef="let order"> {{utils.formatDate(order.createdAt)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef>Opcije</th>
+  <td mat-cell *matCellDef="let order">
+    <a [routerLink]="`/details/${order.toyId}`" matButton>
+    <mat-icon fontIcon="description"/> Detalji</a> 
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card-content>
+</mat-card> }

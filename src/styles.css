@@ -35,3 +35,7 @@
     background: var(--mat-sys-secondary) !important;
     color: var(--mat-sys-on-secondary) !important;
 }
+
+.mc {
+    margin-bottom: 15px;
+}
