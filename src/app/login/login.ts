@@ -29,6 +29,6 @@ export class Login {
       this.router.navigate(['/'])
       return
     }
-    Alerts.error('Greska u kredencijalima')
+    Alerts.error('Greska u kredencijalima' )
   }
 }

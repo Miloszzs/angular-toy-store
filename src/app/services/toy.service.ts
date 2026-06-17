@@ -16,6 +16,9 @@ export class ToyService {
     static async getAllToys() {
         return await client.get<Toy[]>('/toy')
     }
+    static async getToyById(id: number) {
+        return await client.get<Toy>("/toy/" + id);
+    }
     static async getToyType() {
         return await client.get<string[]>('/type')
     }

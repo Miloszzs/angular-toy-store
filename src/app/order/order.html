@@ -1,1 +1,35 @@
-<p>order works!</p>
+@if(toy() != null) {
+    <div class="order-wrapper">
+    <mat-card class="order-card">
+        <div class="order-grid">
+            <div class="order-left">
+                <img class="order-img" [src]="utils.getImageUrl(toy()!)" [alt]="toy()!.name" />
+            </div>
+            <div class="order-right">
+                <h1 class="order-title">{{ toy()!.name }}</h1>
+                <p class="order-desc">{{ toy()!.description }}</p>
+                <div class="order-price">{{ toy()!.price }} RSD</div>
+                <div class="order-info">
+                    <p><strong>Tip:</strong> {{ toy()!.type.name }}</p>
+                    <p><strong>Uzrast:</strong> {{ toy()!.ageGroup.name }}</p>
+                    <p><strong>Ciljna grupa:</strong> {{ toy()!.targetGroup }}</p>
+                    <p><strong>Datum proizvodnje:</strong> {{ toy()!.productionDate }}</p>
+                </div>
+                <mat-form-field class="full-width">
+                    <mat-label><strong>Kolicina :</strong></mat-label>
+                    <input matInput type="number" [(ngModel)]="order.count">
+                </mat-form-field>
+                <h3>Ukupna cena: {{calculateTotal()}} rsd</h3>
+                <div class="order-actions">
+                    <button matButton type="button" class="confirm-btn" (click)="placeOrder()">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Dodaj u korpu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+} @else {
+    <app-loading />
+}
