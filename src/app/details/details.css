@@ -1,23 +1,86 @@
 .details-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .details-wrapper {
+    grid-template-columns: 1fr;
+    margin: 20px auto;
+  }
 }
 
 .details-card {
-    width: 500px;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #eef2f5 !important;
+  overflow: hidden;
+  background: #ffffff;
 }
 
 .details-image {
-    max-width: 100%;
-}
-
-.ml-item {
-    margin-top: 5px;
-    margin-bottom: 5px;
+  width: 100%;
+  max-height: 450px;
+  object-fit: contain; 
+  display: block;
+  border-radius: 8px;
+  background-color: #fafbfc;
 }
 
 .det-header {
-    text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 10px 16px 20px 16px;
+  border-bottom: 2px solid #3f51b5;
+  padding-bottom: 10px;
+  width: fit-content;
+}
+
+.ml-item {
+  height: auto !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px dashed #f0f3f6;
+}
+
+.ml-item:last-child {
+  border-bottom: none;
+}
+
+.ml-item [matListItemTitle] {
+  font-size: 15px !important;
+  color: #4a5568 !important;
+  line-height: 1.5;
+}
+
+.ml-item:has(div:contains("Cena:")) [matListItemTitle] {
+  font-size: 18px !important;
+  font-weight: 600;
+  color: #e74c3c !important;
+}
+
+.details-card mat-card-actions {
+  padding: 20px 16px !important;
+  background: #fafbfc;
+  border-top: 1px solid #eef2f5;
+}
+
+.details-card mat-card-actions a[matButton] {
+  background-color: #2ecc71 !important;
+  color: white !important;
+  font-size: 16px;
+  padding: 8px 24px !important;
+  border-radius: 8px;
+  font-weight: 600;
+  height: auto;
+  line-height: 2.4;
+}
+
+.details-card mat-card-actions a[matButton]:hover {
+  background-color: #27ae60 !important;
 }

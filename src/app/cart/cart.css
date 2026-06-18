@@ -1,0 +1,113 @@
+app-cart {
+  display: block;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+mat-card.mc,
+.mc {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid #eef2f5 !important;
+  overflow: hidden;
+  background: #ffffff;
+  margin-bottom: 35px !important;
+  padding: 24px !important; 
+}
+
+.mc mat-card-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 10px 0 20px 0;
+}
+
+.mc table[mat-table],
+.mc .mat-elevation-z8 {
+  width: 100% !important;
+  background: transparent !important;
+  box-shadow: none !important; 
+  border-collapse: collapse !important;
+}
+
+::ng-deep .mc th.mat-header-cell {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #4a5568 !important;
+  background-color: #f8fafc !important;
+  padding: 16px !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+::ng-deep .mc td.mat-cell {
+  font-size: 14px !important;
+  color: #2d3748 !important;
+  padding: 16px !important;
+  border-bottom: 1px solid #edf2f7 !important;
+  vertical-align: middle !important;
+}
+
+::ng-deep .mc td.mat-cell mat-form-field {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+::ng-deep .mc td.mat-cell a[matButton], 
+::ng-deep .mc td.mat-cell button[matButton] {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  padding: 0 12px !important;
+  height: 34px !important;
+}
+
+::ng-deep .mc td.mat-cell button {
+  color: #e74c3c !important;
+}
+
+.mc mat-card-content > div {
+  margin-top: 25px;
+  padding: 20px 24px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 1px solid #eef2f5;
+}
+
+.mc mat-card-content > div:not(:has(strong)) {
+  display: flex; 
+  flex-direction: column;
+}
+
+.mc mat-card-content > div h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.mc mat-card-content > div h3 strong {
+  font-size: 24px;
+  color: #e74c3c;
+  margin-left: 8px;
+}
+
+.mc mat-card-content > div button[color="primary"] {
+  background-color: #3f51b5 !important;
+  color: white !important;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  height: 44px;
+  transition: background-color 0.2s;
+}
+
+.mc mat-card-content > div button[color="primary"]:hover {
+  background-color: #303f9f !important;
+}

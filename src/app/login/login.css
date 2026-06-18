@@ -1,0 +1,85 @@
+mat-card {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 24px !important;
+  border-radius: 16px !important; 
+  border: 1px solid #eef2f5 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+  background: #ffffff;
+}
+
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+mat-card-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  border-bottom: 3px solid #3f51b5;
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+mat-card-content div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 0 0 !important;
+  background: transparent !important;
+  border-top: 1px solid #f5f7fa;
+}
+
+mat-card-actions button[matButton] {
+  width: 100%;
+  background-color: #3f51b5 !important;
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 600;
+  height: 46px;
+  font-size: 15px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+mat-card-actions button[matButton]:hover {
+  background-color: #303f9f !important;
+}
+
+mat-card-actions a[routerLink="/signup"] {
+  width: 100%;
+  color: #3f51b5 !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-weight: 500;
+  height: 44px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+mat-card-actions a[routerLink="/signup"]:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+mat-card-actions mat-icon {
+  margin-right: 8px;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
