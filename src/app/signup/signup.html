@@ -25,17 +25,17 @@
             <input matInput type="email" [(ngModel)]="user.email">
         </mat-form-field>
         <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
+            <mat-label>Sifra</mat-label>
             <input matInput type="password" [(ngModel)]="user.password">
         </mat-form-field>
         <mat-form-field class="full-width">
-            <mat-label>Repeat password</mat-label>
+            <mat-label>Ponovite sifru</mat-label>
             <input matInput type="password" [(ngModel)]="repeat">
         </mat-form-field>
         <mat-form-field class="full-width">
         <mat-label>Omiljeni tip igracke: </mat-label>
-        <mat-select [(ngModel)]="toy">
-            @for(t of toy(); track $index){
+        <mat-select [(ngModel)]="selectedToyType">
+            @for(t of toyTypes(); track $index){
                 <mat-option [value]="t">{{t}}</mat-option>
             }
         </mat-select>
@@ -44,10 +44,10 @@
     </mat-card-content>
     <mat-card-actions>
         <button type="button" matButton (click)="doSignup()">
-        <mat-icon fontIcon="send" /> Submit
+        <mat-icon fontIcon="send" /> Potvrdi
         </button>
         <a routerLink="/login" matButton>
-        <mat-icon fontIcon="login" /> Login instead
+        <mat-icon fontIcon="login" /> Prijavite se
         </a>
     </mat-card-actions>
 </mat-card>

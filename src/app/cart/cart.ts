@@ -9,15 +9,20 @@ import { Utils } from '../utils';
 import { OrderModel } from '../../models/order.model';
 import { Toy } from '../../models/toy.model';
 import { Alerts } from '../alerts';
+import { MatFormField, MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { Order } from '../order/order';
 
 @Component({
   selector: 'app-cart',
   imports: [MatCardModule,
             MatTableModule,
             MatButtonModule,
-            MatCardModule,
             MatIconModule,
-            RouterLink
+            RouterLink,
+            MatFormField,
+            MatInputModule,
+            FormsModule
   ],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
@@ -70,5 +75,22 @@ export class Cart {
 
   getDoneOrders() {
     return AuthService.getOrdersByState('pristiglo')
+  }
+
+  updateCount(order: OrderModel, event: any) {
+    const newCount = parseInt(event.target.value, 10);
+    if (!isNaN(newCount) && newCount > 0) {
+      order.count = newCount;
+    } if (typeof AuthService.updateOrderCount === 'function') {
+      AuthService.updateOrderCount(order.createdAt, newCount);
+    }
+  }
+
+  deleteDoneOrder(order: OrderModel) {
+    Alerts.confirm('Jeste li sigurni da želite trajno obrisati ovu porudžbinu iz istorije?', () => {
+      if (typeof AuthService.deleteOrder === 'function') {
+        AuthService.deleteOrder(order.createdAt);
+      } this.reloadComponent();
+    });
   }
 }

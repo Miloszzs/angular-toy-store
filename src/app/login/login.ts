@@ -21,8 +21,8 @@ export class Login {
     }
   }
 
-  email: string = 'user@example.com'
-  password: string = 'user123'
+  email: string = ''
+  password: string = ''
 
   doLogin() {
     if (AuthService.login(this.email, this.password)) {

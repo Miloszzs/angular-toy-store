@@ -121,6 +121,30 @@ export class AuthService {
         return []
     }
 
+    static updateOrderCount(createdAt: string, newCount: number) {
+        const users = this.getUsers()
+        for (let u of users) {
+            if (u.email === localStorage.getItem(ACTIVE)) {
+                for (let o of u.orders) {
+                    if (o.state === 'rezervisano' && o.createdAt === createdAt) {
+                        o.count = newCount;
+                    }
+                }
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
+    static deleteOrder(createdAt: string) {
+        const users = this.getUsers()
+        for (let u of users) {
+            if (u.email === localStorage.getItem(ACTIVE)) {
+                u.orders = u.orders.filter(o => o.createdAt !== createdAt);
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
     static createUser(user: Partial<UserModel>) {
         const users = this.getUsers()
         user.orders = []
@@ -135,4 +159,45 @@ export class AuthService {
         }
         return false
     }
+
+    static canUserRateToy(toyId: number | string): boolean {
+        const user = this.getActiveUser();
+        if (!user) return false;
+        
+        return user.orders.some(o => o.toyId == toyId && o.state === 'pristiglo');
+    }
+
+    static rateToy(toyId: number | string, rating: number, comment: string) {
+        const ratingsKey = 'toy_ratings';
+        let allRatings = JSON.parse(localStorage.getItem(ratingsKey) || '{}');
+        
+        if (!allRatings[toyId]) {
+            allRatings[toyId] = [];
+        }
+        
+        allRatings[toyId].push({
+            rating: rating,
+            comment: comment.trim()
+        });
+        
+        localStorage.setItem(ratingsKey, JSON.stringify(allRatings));
+    }
+
+    static getAverageRating(toyId: number | string): number {
+        const ratingsKey = 'toy_ratings';
+        const allRatings = JSON.parse(localStorage.getItem(ratingsKey) || '{}');
+        const toyRatings = allRatings[toyId];
+        
+        if (!toyRatings || toyRatings.length === 0) return 0;
+        
+        const sum = toyRatings.reduce((a: number, b: any) => a + b.rating, 0);
+        return Math.round((sum / toyRatings.length) * 10) / 10;
+    }
+
+    static getToyReviews(toyId: number | string): { rating: number, comment: string }[] {
+        const ratingsKey = 'toy_ratings';
+        const allRatings = JSON.parse(localStorage.getItem(ratingsKey) || '{}');
+        return allRatings[toyId] || [];
+    }
+
 }

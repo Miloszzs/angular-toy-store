@@ -56,6 +56,7 @@ export class Order {
   placeOrder() {
     Alerts.confirm('Jeste li sigurni da zelite da obavite kupovinu?', ()=> {
     AuthService.createOrder(this.order, this.toy()!)
+    Alerts.success('Vasa narudzbina se nalazi u rezervacijama')
     this.router.navigate(['/cart'])
     })
   }

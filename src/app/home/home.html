@@ -1,13 +1,33 @@
-@if(toys().length > 0) {
+@if(isLoading()) {
+    <app-loading></app-loading>
+} @else {
+    <div class="search-wrapper">
+    <mat-form-field>
+        <mat-label>Pretraga</mat-label>
+        <input matInput type="text" [ngModel]="search()" (ngModelChange)="search.set($event)">
+    </mat-form-field>    
+    </div>
 
-<div class="card-wrapper">
-    @for(t of toys(); track $index) {
+    @if(filteredToys().length > 0) {
+
+    <div class="card-wrapper">
+    @for(t of filteredToys(); track $index) {
         <mat-card class="toy-card" appearance="outlined"> 
             <img mat-card-image [src]="utils.getImageUrl(t)" 
             [alt]="t.name">
                 <mat-card-content class="card-content">
                     <mat-card-title><strong>{{t.name}}</strong></mat-card-title>
                     <mat-card-subtitle class="subt">Cena: {{t.price}}rsd</mat-card-subtitle>
+                    <div class="toy-rating" style="margin-top: 5px; display: flex; align-items: center; gap: 5px;">
+    <mat-icon fontIcon="star" style="color: #ffd700; height: 20px; width: 20px; font-size: 20px;"></mat-icon>
+    <strong>
+        @if(getRating(t.toyId) > 0) {
+            {{ getRating(t.toyId) }} / 5
+        } @else {
+            -
+        }
+    </strong>
+</div>
                 </mat-card-content>
             <mat-card-actions>
                 <a [routerLink]="`/details/${t.toyId}`" matButton>
@@ -15,7 +35,9 @@
             </mat-card-actions>
         </mat-card>
     }
-</div>}
-@else{
-    <app-loading></app-loading>
+    </div>}
+ @else { <div class="no-results">
+    <p>Nema ponudjenih igracaka za pojam {{search()}}.</p>
+        </div>
     }
+}

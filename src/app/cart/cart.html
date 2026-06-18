@@ -19,7 +19,11 @@
   </ng-container>
   <ng-container matColumnDef="count">
     <th mat-header-cell *matHeaderCellDef>Kolicina</th>
-    <td mat-cell *matCellDef="let order"> {{order.count}} </td>
+    <td mat-cell *matCellDef="let order"> 
+      <mat-form-field appearance="outline" style="width: 80px; margin-top: 10px;">
+        <input matInput type="number" [value]="order.count" min="1" (change)="updateCount(order, $event)">
+      </mat-form-field>
+    </td>
   </ng-container>
   <ng-container matColumnDef="createdAt">
     <th mat-header-cell *matHeaderCellDef>Kreirano</th>
@@ -121,8 +125,12 @@
     <th mat-header-cell *matHeaderCellDef>Opcije</th>
   <td mat-cell *matCellDef="let order">
     <a [routerLink]="`/details/${order.toyId}`" matButton>
-    <mat-icon fontIcon="description"/> Detalji</a> 
-    </td>
+    <mat-icon fontIcon="description"/> Detalji
+    </a>
+     <button type="button" matButton color="warn" (click)="deleteDoneOrder(order)">
+        <mat-icon fontIcon="delete"/> Ukloni
+      </button>
+  </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
